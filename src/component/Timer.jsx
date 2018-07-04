@@ -3,13 +3,25 @@ import moment from 'moment';
 import 'moment/locale/ko';
 moment.locale('ko');
 
+const TIME_FORMAT = 'YYYY-MM-DD A hh:mm';
 class Timer extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
-    this.state.date = moment();
-    this.nTimer = setInterval(this.onTick, 1000);
+    this.state = {
+      date: moment(),
+    };
+
+    this.nTimer = setInterval(() => {
+      this.setState({
+        date: moment(),
+      });
+    }, 1000);
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    if (this.state.date.format(TIME_FORMAT) === nextState.date.format(TIME_FORMAT)) return false;
+    return true;
   }
 
   onTick = () => {
@@ -33,10 +45,17 @@ class Timer extends Component {
   };
 
   render() {
+    const { expireDate } = this.props;
+    const { date } = this.state;
+
+    if (moment(this.props.expireDate) < this.state.date) {
+      return <div>종료 되었습니다.</div>;
+    }
+
     return (
       <div>
-        <div>현재시간: {moment().format('YYYY-MM-DD A hh:mm:ss')} </div>
-        <div>{moment(this.props.expireDate).fromNow()}남았습니다.</div>
+        <div>현재시간: {date.format(TIME_FORMAT)} </div>
+        <div>{moment(expireDate).fromNow()}에 수업이 종료됩니다.</div>
         <div>{this.timeChecking()} 남았습니다.</div>
       </div>
     );
