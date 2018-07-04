@@ -1,24 +1,14 @@
-import React, { Component } from "react";
-import logo from "./logo.svg";
-import "./App.css";
+import React, { Component } from 'react';
+import logo from './logo.svg';
+import './App.css';
+import LectureGoalList from './component/LectureGoalList';
 
 const goals = [
-  "1. React 개발에 필요한 환경을 구축한다.",
-  "2. 새로운 자바스크립트 문법을 익힌다.",
-  "3. 개발 편의를 위한 VSCODE IDE를 익힌다.",
-  "3. 개발 편의를 위한 VSCODE IDE를 익힌다."
+  '1. React 개발에 필요한 환경을 구축한다.',
+  '2. 새로운 자바스크립트 문법을 익힌다.',
+  '3. 개발 편의를 위한 VSCODE IDE를 익힌다.',
+  '3. 개발 편의를 위한 VSCODE IDE를 익힌다.',
 ];
-
-const LectureGoalList = props => {
-  console.log(props.items);
-
-  return (
-    <div>
-      <div>{props.title}</div>
-      <ul>{props.items.map((item, idx) => <li key={idx}>{item}</li>)}</ul>
-    </div>
-  );
-};
 
 class App extends Component {
   // constructor(props) {
@@ -32,13 +22,14 @@ class App extends Component {
   // }
 
   state = {
-    x: 1
+    x: 1,
   };
 
-  handleClick = () => {
-    console.log(this);
-    console.log(this.state.x);
-  };
+  handleClick(a, b, c) {
+    console.log(a);
+    console.log(a.target);
+    console.log(arguments);
+  }
 
   render() {
     return (
