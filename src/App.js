@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import LectureGoalList from './component/LectureGoalList';
 import Timer from './component/Timer';
+import moment from 'moment';
 
 const goals = [
   '1. React 개발에 필요한 환경을 구축한다.',
@@ -24,6 +25,7 @@ class App extends Component {
 
   state = {
     x: 1,
+    isExpired: false,
   };
 
   handleClick = (a, b, c) => {
@@ -34,7 +36,20 @@ class App extends Component {
     console.log(arguments);
   }
 
+  handleComplete = () => {
+    //자식이 종료된 시간의 1초 후에 발생
+    console.log("타이머로부터 호출받음");
+    this.setState({isExpired: true});
+
+  }
+
   render() {
+
+    //종료 시점을 App이 판단
+    const isExpired2 = moment('2018-07-04T17:00:00+09:00') < moment();
+    //종료 시점을 컴포넌트가 판단
+    const {isExpired} = this.state;
+
     return (
       <div className="App">
         <header className="App-header">
@@ -46,7 +61,10 @@ class App extends Component {
         </p>
         <LectureGoalList items={goals} title={'강의목표'} />
 
-        <Timer expireDate='2018-07-04T17:00:00+09:00'/>
+        { !isExpired &&
+          <Timer expireDate='2018-07-04T16:08:00+09:00'
+          onComplete = {this.handleComplete}
+        /> }
       </div>
     );
   }
