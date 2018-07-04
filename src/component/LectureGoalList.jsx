@@ -37,8 +37,6 @@ const chkBox = idx => {
 };
 
 const LectureGoalList = ({ items, title }) => {
-  console.log(items);
-
   return (
     <div style={styles}>
       <div>{title}</div>

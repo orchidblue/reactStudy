@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import LectureGoalList from './component/LectureGoalList';
+import Timer from './component/Timer';
 
 const goals = [
   '1. React 개발에 필요한 환경을 구축한다.',
@@ -25,7 +26,9 @@ class App extends Component {
     x: 1,
   };
 
-  handleClick(a, b, c) {
+  handleClick = (a, b, c) => {
+    debugger;
+    console.log(this);
     console.log(a);
     console.log(a.target);
     console.log(arguments);
@@ -42,6 +45,8 @@ class App extends Component {
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
         <LectureGoalList items={goals} title={'강의목표'} />
+
+        <Timer expireDate='2018-07-04T17:00:00+09:00'/>
       </div>
     );
   }
