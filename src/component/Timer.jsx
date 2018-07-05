@@ -17,7 +17,7 @@ class Timer extends PureComponent {
       this.setState({
         date: moment(),
       });
-    }, 1000);
+    }, 10000);
   }
 
   // shouldComponentUpdate(nextProps, nextState) {

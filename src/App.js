@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Todos from './component/Todos';
 import Timer from './component/Timer';
 import moment from 'moment';
-import 'antd/dist/antd.css';
+//import 'antd/dist/antd.css';
 import Header from './component/Header';
+import AsyncState from './component/AsyncState';
 
 const goals = [
   { title: '1. React 개발에 필요한 환경을 구축한다.', completed: true },
@@ -16,7 +16,7 @@ const goals = [
 
 const END_TIME1 = '2018-07-05T17:00:00+09:00';
 const END_TIME2 = '2018-07-05T13:00:00+09:00';
-const END_TIME2_CHANGE = 1000;
+const END_TIME2_CHANGE = 100000;
 
 class App extends Component {
   // constructor(props) {
@@ -73,11 +73,8 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
         <Todos items={goals} title={'강의목표'} />
-
+        <AsyncState />
         {!isExpired && (
           <Timer
             key={dateStr}

@@ -12,9 +12,9 @@ const ulStyles = {
   listStyle: 'none',
 };
 
-const chkStyle = {
-  marginRight: '10px',
-};
+// const chkStyle = {
+//   marginRight: '10px',
+// };
 
 function onCheck(e) {
   console.log('The link was clicked.  index: ' + e);
