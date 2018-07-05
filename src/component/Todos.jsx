@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Checkbox } from 'antd';
 
 const styles = {
@@ -20,25 +20,25 @@ function onCheck(e) {
   console.log('The link was clicked.  index: ' + e);
 }
 
-const chkBox = idx => {
-  function chkClickEvent(e) {
-    //e.preventDefault();
-    console.log('The link was clicked.  index: ' + e);
-  }
+// const chkBox = idx => {
+//   function chkClickEvent(e) {
+//     //e.preventDefault();
+//     console.log('The link was clicked.  index: ' + e);
+//   }
 
-  //return <input type="checkbox" onClick={chkClickEvent} style={chkStyle} />;
-  //react를 사용하여 인자값 전달 방법
-  //https://stackoverflow.com/questions/29810914/react-js-onclick-cant-pass-value-to-method
-  return (
-    <Checkbox
-      //onClick = {() => chkClickEvent(idx)}
-      onClick={function() {
-        chkClickEvent(idx);
-      }}
-      style={chkStyle}
-    />
-  );
-};
+//   //return <input type="checkbox" onClick={chkClickEvent} style={chkStyle} />;
+//   //react를 사용하여 인자값 전달 방법
+//   //https://stackoverflow.com/questions/29810914/react-js-onclick-cant-pass-value-to-method
+//   return (
+//     <Checkbox
+//       //onClick = {() => chkClickEvent(idx)}
+//       onClick={function() {
+//         chkClickEvent(idx);
+//       }}
+//       style={chkStyle}
+//     />
+//   );
+// };
 
 const ListItem = ({ title, completed }) => {
   return (

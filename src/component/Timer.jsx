@@ -1,11 +1,12 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import moment from 'moment';
 import 'moment/locale/ko';
 moment.locale('ko');
 
 const TIME_FORMAT = 'YYYY-MM-DD A hh:mm';
-class Timer extends Component {
+class Timer extends PureComponent {
   constructor(props) {
+    console.log('Timer Constructor');
     super(props);
 
     this.state = {
@@ -19,18 +20,20 @@ class Timer extends Component {
     }, 1000);
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    if (this.state.date.format(TIME_FORMAT) === nextState.date.format(TIME_FORMAT)) return false;
-    return true;
-  }
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   if (this.state.date.format(TIME_FORMAT) === nextState.date.format(TIME_FORMAT)) return false;
+  //   return true;
+  // }
 
   onTick = () => {
     this.forceUpdate();
   };
 
   timeChecking = () => {
-    const Time = moment(this.props.expireDate).valueOf() - moment().valueOf();
-    return this.msToTime(Time);
+    return 1;
+
+    // const Time = moment(this.props.expireDate).valueOf() - moment().valueOf();
+    // return this.msToTime(Time);
   };
 
   msToTime = s => {
@@ -48,11 +51,10 @@ class Timer extends Component {
     console.log('timer Render');
     const { expireDate, onComplete } = this.props;
     const { date } = this.state;
-    console.log(expireDate);
-    if (moment(expireDate) < this.state.date) {
-      setTimeout(() => {
-        onComplete && onComplete();
-      }, 1000);
+    if (moment(expireDate) < date) {
+      // setTimeout(() => {
+      //   onComplete && onComplete();
+      // }, 1000);
       return <div>종료 되었습니다.</div>;
     }
 
@@ -66,6 +68,7 @@ class Timer extends Component {
   }
 
   componentWillUnmount() {
+    console.log('Timer unmount');
     if (this.nTimer) {
       clearInterval(this.nTimer);
       this.nTimer = null;
