@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Checkbox } from 'antd';
 
 const styles = {
   textAlign: 'left',
@@ -15,6 +16,10 @@ const chkStyle = {
   marginRight: '10px',
 };
 
+function onCheck(e) {
+  console.log('The link was clicked.  index: ' + e);
+}
+
 const chkBox = idx => {
   function chkClickEvent(e) {
     //e.preventDefault();
@@ -25,8 +30,7 @@ const chkBox = idx => {
   //react를 사용하여 인자값 전달 방법
   //https://stackoverflow.com/questions/29810914/react-js-onclick-cant-pass-value-to-method
   return (
-    <input
-      type="checkbox"
+    <Checkbox
       //onClick = {() => chkClickEvent(idx)}
       onClick={function() {
         chkClickEvent(idx);
@@ -36,22 +40,25 @@ const chkBox = idx => {
   );
 };
 
+const ListItem = ({ title, completed }) => {
+  return (
+    <li style={ulStyles}>
+      <Checkbox
+        defaultChecked={completed}
+        onChange={() => {
+          onCheck();
+        }}>
+        {title}
+      </Checkbox>
+    </li>
+  );
+};
+
 const LectureGoalList = ({ items, title }) => {
   return (
     <div style={styles}>
       <div>{title}</div>
-      <ul>
-        {items.map((item, idx) => {
-          return (
-            <li key={idx} style={ulStyles}>
-              <label>
-                {chkBox(idx)}
-                {item}
-              </label>
-            </li>
-          );
-        })}
-      </ul>
+      <ul>{items.map((item, idx) => <ListItem key={idx} {...item} />)}</ul>
     </div>
   );
 };

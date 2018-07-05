@@ -45,10 +45,11 @@ class Timer extends Component {
   };
 
   render() {
+    console.log('timer Render');
     const { expireDate, onComplete } = this.props;
     const { date } = this.state;
-
-    if (moment(this.props.expireDate) < this.state.date) {
+    console.log(expireDate);
+    if (moment(expireDate) < this.state.date) {
       setTimeout(() => {
         onComplete && onComplete();
       }, 1000);
